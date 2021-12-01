@@ -34,14 +34,16 @@ public class SergeiDTest {
     public void testSearches() {
         driver.get("https://www.webstaurantstore.com/");
 
-        driver.findElement(By.id("searchval")).sendKeys("table\n");
+        String text = "table";
+
+        driver.findElement(By.id("searchval")).sendKeys(text + "\n");
         List<WebElement> itemList = driver.findElements(
                 //By.xpath("//div[@id='details']/a[@data-testid='itemDescription']")
                 By.xpath("//a[@data-testid='itemDescription']")
         );
 
         for (int i = 0; i < itemList.size(); i++) {
-            Assert.assertTrue(itemList.get(i).getText().toLowerCase().contains("table"));
+            Assert.assertTrue(itemList.get(i).getText().toLowerCase().contains(text));
         }
      }
 }
